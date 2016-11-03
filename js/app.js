@@ -34,8 +34,8 @@ $('.spotify').click(function (){
       var albumHTML = '<ul class="photo-area">';
       each(object.tracks.items, function(i, album){
         photoHTML += '<li class="photos">';
-        photoHTML += '<a href="' + object[i].link + '" class="image">';
-        photoHTML += '<img src="' + photo.media.m + '"></a></li>';        
+        photoHTML += '<a href="' + /*idk what to do here*/ + '" class="image">';
+        photoHTML += '<img src="' + /*idk what to do here*/ + '"></a></li>';        
       });
     }
   $.getJSON(spotifyApi,function(data) {
