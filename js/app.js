@@ -29,8 +29,7 @@ $('.spotify').click(function (){
   $('button').removeClass('selected');
   $(this).addClass('selected');
     $(".background-msg").remove();
-    var deckOfCardsApi = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
-    var deckofcardsapi
+    var spotifyApi = "https://api.spotify.com/v1/search?q=jay-z&type=track"
     function displayAlbums(object){
       var albumHTML = '<ul class="photo-area">';
       each(object.tracks.items, function(i, album){
