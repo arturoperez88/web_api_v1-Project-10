@@ -13,10 +13,11 @@
       var photoHTML = '<ul class="photo-area">';
       $.each(data.items,function(i,photo) {
         photoHTML += '<li class="photos">';
-        photoHTML += '<a href="' + photo.link + '" class="image">';
+        photoHTML += '<a href="' + photo.link + '" data-lightbox="image" data-title="'+'" class="image">';
         photoHTML += '<img src="' + photo.media.m + '"></a></li>';
       }); // end each
       photoHTML += '</ul>';
+      
       $('.Photo-gallery').html(photoHTML);
       console.log(data);
     }
