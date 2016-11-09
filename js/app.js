@@ -1,45 +1,29 @@
 
- $('.flikr').click(function () {
-    $("button").removeClass("selected");
-    $(this).addClass("selected");
-    $(".background-msg").remove();
-    var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-    var animal = $(this).text();
-    var flickrOptions = {
-      tags: animal,
-      format: "json"
-    };
-    function displayPhotos(data) {
-      var photoHTML = '<ul class="photo-area">';
-      $.each(data.items,function(i,photo) {
-        photoHTML += '<li class="photos">';
-        photoHTML += '<a href="' + photo.link + '" data-lightbox="image" data-title="'+'" class="image">';
-        photoHTML += '<img src="' + photo.media.m + '"></a></li>';
-      }); // end each
-      photoHTML += '</ul>';
-      
-      $('.Photo-gallery').html(photoHTML);
-      console.log(data);
-    }
-    $.getJSON(flickerAPI, flickrOptions, displayPhotos);
-
-  }); 
-
-
 $('.spotify').click(function (){
-  $('button').removeClass('selected');
-  $(this).addClass('selected');
+  if ($('button').hasClass('selected') === true) {
+    $('button').removeClass('selected');
+    $('.Photo-gallery').hide();
+     $('.spotify').html('"Click to SHOW" Jay-Z Fetured Songs & Albums');
+  }else{
+  $('button').addClass('selected');
+   $('.Photo-gallery').show();
+   $('.spotify').html('"Click To HIDE" Jay-Z Fetured Songs & Albums');
+}
     $(".background-msg").remove();
-    var spotifyApi = "https://api.spotify.com/v1/search?q=Jay%20Z&type=album"
+    var spotifyApi = "https://api.spotify.com/v1/search?q=jay%20Z&type=track"
     function displayAlbums(object){
-      var albumHTML = '<ul class="photo-area">';
-      $.each(object.albums.items, function(i, album){
-        albumHTML += '<li class="photos">';
-        albumHTML += '<a href="' +album.images[0].url +'" data-lightbox="image" data-title="'+'" class="image">';
-        albumHTML += '<img src="' + album.images[0].url  + '"></a></li>';        
+      var trackHTML = '<ul class="photo-area">';
+      $.each(object.tracks.items, function(i, track){
+        trackHTML += '<li class="photos">';
+        trackHTML += '<a href="' +track.album.images[0].url +'" data-lightbox="image" data-title="';
+        trackHTML += 'Song Name: ' + track.name + '</br>';
+        trackHTML += 'Artist Names: ' + track.artists.map(a => a.name) + '</br>';
+        trackHTML += 'Album Name: ' + track.album.name + '</br>';
+        trackHTML += '">';
+        trackHTML += '<img src="' + track.album.images[0].url  + '"></a></li>';        
       });
-        albumHTML += '</ul>';
-      $('.Photo-gallery').html(albumHTML);
+        trackHTML += '</ul>';
+      $('.Photo-gallery').html(trackHTML);
     }
   $.getJSON(spotifyApi,function(data){
     console.log(data);
@@ -49,4 +33,5 @@ $('.spotify').click(function (){
  $.getJSON(spotifyApi,displayAlbums);
 });
 
+ 
 
